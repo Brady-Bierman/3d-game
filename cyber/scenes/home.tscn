@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbgdgxiyho7rb"]
+
+[ext_resource type="PackedScene" uid="uid://cxyadowj4yuxi" path="res://scenes/handeler.tscn" id="1_xoswo"]
+[ext_resource type="PackedScene" uid="uid://iadqciwwhb8e" path="res://scenes/player.tscn" id="2_ktgq4"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kp8te"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_itwqu"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[node name="home" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_kp8te")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_itwqu")
+
+[node name="handeler" parent="." instance=ExtResource("1_xoswo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4585, 1.03262, -14.2775)
+
+[node name="player" parent="." instance=ExtResource("2_ktgq4")]

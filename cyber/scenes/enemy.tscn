@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://bun2b4f1mmtu7"]
+
+[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_5dbt5"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iuvbr"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hpvo8"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2pf0t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j748w"]
+radius = 0.6
+height = 2.1
+
+[node name="enemy" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1.12258, 0)
+collision_layer = 8
+script = ExtResource("1_5dbt5")
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="model"]
+mesh = SubResource("CapsuleMesh_iuvbr")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="model"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.54769, 0.5031, 0.478692)
+mesh = SubResource("CylinderMesh_hpvo8")
+skeleton = NodePath("../..")
+
+[node name="bullet_spawn" type="Node3D" parent="model/MeshInstance3D2"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.00341409, -0.573569, 0.00405657)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_2pf0t")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CapsuleShape3D_j748w")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="agro_clock" type="RayCast3D" parent="."]
+target_position = Vector3(50, 0, 0)
+
+[node name="agro_count_clock" type="RayCast3D" parent="."]
+target_position = Vector3(50, 0, 0)
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

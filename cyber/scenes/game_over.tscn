@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bk7g4wxc04vi5"]
+
+[node name="game over" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 320.0
+offset_top = 256.0
+offset_right = 832.0
+offset_bottom = 384.0
+theme_override_font_sizes/normal_font_size = 30
+text = "The malicious codes have escaped
+They have our keys still.
+Get after them strider!!!"

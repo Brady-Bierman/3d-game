@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxyadowj4yuxi"]
+
+[ext_resource type="Script" path="res://scripts/handeler.gd" id="1_c5lmm"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g1pyw"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_en3ke"]
+radius = 5.0
+
+[node name="handeler" type="MeshInstance3D"]
+mesh = SubResource("CylinderMesh_g1pyw")
+script = ExtResource("1_c5lmm")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_en3ke")
